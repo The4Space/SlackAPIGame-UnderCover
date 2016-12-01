@@ -84,5 +84,6 @@ class API_Worker( worker_base.API_Worker_Base ):
             send_slack_message( "醒醒吧,你只有一個人" )
         elif data_text == '+3':
             send_slack_message( "3333" )
-
+        elif data_text == '+4':
+            send_slack_message( "4 Space!" )
         self.reply( '', 'text/html', 200 )
