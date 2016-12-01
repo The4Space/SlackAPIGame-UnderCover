@@ -32,6 +32,7 @@ class ServerHandler( BaseHTTPRequestHandler ):
         post_data = None
         form      = None
 
+        print ctype
         if ctype == 'text/plain':
             post_data = self.rfile.read(int(self.headers.getheader('Content-Length')))
         elif ctype == 'application/x-www-form-urlencoded':
