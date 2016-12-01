@@ -28,7 +28,6 @@ def send_slack_message( message, user = '' ):
         reply['channel'] = "@{id}".format(id=user)
     payload = 'payload=' + json.dumps(reply)
     subprocess.check_output( [ 'curl', '-X', 'POST', '--data-urlencode', payload, slack_url ] )
-    return reply
 
 def attend_player( player ):
     member.append(player)
@@ -56,36 +55,34 @@ class API_Worker( worker_base.API_Worker_Base ):
             "公共場合的垃圾要自己帶走喔~ :hearts::hearts::hearts:",
             "請大家將沒吃完的食物倒在廚餘回收桶裡面，不要倒在水槽～"
         ]
-
-        reply_data = {}
         
         if data_text == 'SPY':
-            reply_data = send_slack_message( 'Game Start !', player_name  )
+            send_slack_message( 'Game Start !', player_name  )
         elif data_text == '+1':
-            reply_data = send_slack_message( 'Welcome ! ' + player_name, "" )
+            send_slack_message( 'Welcome ! ' + player_name, "" )
         elif data_text == 'Time up':
-            reply_data = attend_player( 'Attend player have: ' +  player_name, "" )
+            attend_player( 'Attend player have: ' +  player_name, "" )
         elif data_text == 'Hey Siri':
-            reply_data = send_slack_message( 'Honey~ :heart::heart::heart::heart::heart:', player_name )
+            send_slack_message( 'Honey~ :heart::heart::heart::heart::heart:', player_name )
         elif data_text == 'Hey NPC':
-            reply_data = send_slack_message( "What's up honey?" )
+            send_slack_message( "What's up honey?" )
         elif data_text == 'Hey Ted':
-            reply_data = send_slack_message( "I'm Tim!!!!" )
+            send_slack_message( "I'm Tim!!!!" )
         elif data_text == 'Hey Rita':
             if player_name == 'dogtim':
-                reply_data = send_slack_message( "Honey~ Love you :revolving_hearts::heart::heart::heart:")
+                send_slack_message( "Honey~ Love you :revolving_hearts::heart::heart::heart:")
             elif player_name == 'nan':
-                reply_data = send_slack_message( "Nan GOGOGO")
+                send_slack_message( "Nan GOGOGO")
             else:
-                reply_data = send_slack_message( random.choice(hey_rita_response) )
+                send_slack_message( random.choice(hey_rita_response) )
         elif data_text == 'OK. GO!':
             if player_name == 'nan':
-                reply_data = send_slack_message( ":heart::heart::heart:")
+                send_slack_message( ":heart::heart::heart:")
         elif data_text == '縮排':
-            reply_data = send_slack_message( "4 Spaces!!!!" )
+            send_slack_message( "4 Spaces!!!!" )
         elif data_text == '+2':
-            reply_data = send_slack_message( "醒醒吧,你只有一個人" )
+            send_slack_message( "醒醒吧,你只有一個人" )
         elif data_text == '+3':
-            reply_data = send_slack_message( "3333" )
+            send_slack_message( "3333" )
 
-        self.reply( json.dumps(reply_data), 'application/json', 200 )
+        self.reply( '', 'text/html', 200 )
