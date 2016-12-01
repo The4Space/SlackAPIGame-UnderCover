@@ -85,4 +85,6 @@ class API_Worker( worker_base.API_Worker_Base ):
         elif data_text == '+3':
             send_slack_message( "3333" )
 
-        self.reply( '', 'text/html', 200 )
+        reply_data = {}
+        reply_data['text'] = ''
+        self.reply( json.dumps(reply_data), 'application/json', 200 )
