@@ -70,7 +70,7 @@ class API_Worker( worker_base.API_Worker_Base ):
             send_slack_message( "I'm Tim!!!!" )
         elif data_text == 'Hey Rita':
             if player_name == 'dogtim':
-                send_slack_message( "Honey~ Happy Birthday :revolving_hearts::heart::heart::heart:")
+                send_slack_message( "Honey~ Love you :revolving_hearts::heart::heart::heart:")
             elif player_name == 'nan':
                 send_slack_message( "Nan GOGOGO")
             else:
@@ -78,5 +78,7 @@ class API_Worker( worker_base.API_Worker_Base ):
         elif data_text == 'OK. GO!':
             if player_name == 'nan':
                 send_slack_message( ":heart::heart::heart:")
+        elif data_text == '縮排':
+            send_slack_message( "4 Spaces!!!!" )
 
         self.reply( '', 'text/html', 200 )
