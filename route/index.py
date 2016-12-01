@@ -86,5 +86,5 @@ class API_Worker( worker_base.API_Worker_Base ):
             send_slack_message( "3333" )
 
         reply_data = {}
-        reply_data['text'] = ''
+        reply_data['text'] = 'Hello~'
         self.reply( json.dumps(reply_data), 'application/json', 200 )
