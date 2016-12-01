@@ -4,4 +4,4 @@
 *.yaml
 *.config
 *.json
-
+nohup.out

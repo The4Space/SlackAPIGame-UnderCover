@@ -45,7 +45,7 @@ class API_Worker( worker_base.API_Worker_Base ):
         print data
         print type(data)
 
-        data_text = data['text'][0]
+        data_text = data['text'][0][1:]
         player_name = data['user_name'][0]
         hey_rita_response = [
             ":hearts::hearts::hearts: Love you :hearts::hearts::hearts:",
@@ -75,5 +75,8 @@ class API_Worker( worker_base.API_Worker_Base ):
                 send_slack_message( "Nan GOGOGO")
             else:
                 send_slack_message( random.choice(hey_rita_response) )
+        elif data_text == 'OK. GO!':
+            if player_name == 'nan':
+                send_slack_message( ":heart::heart::heart:")
 
         self.reply( '', 'text/html', 200 )
