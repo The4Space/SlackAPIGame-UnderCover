@@ -80,5 +80,9 @@ class API_Worker( worker_base.API_Worker_Base ):
                 send_slack_message( ":heart::heart::heart:")
         elif data_text == '縮排':
             send_slack_message( "4 Spaces!!!!" )
+        elif data_text == '+2':
+            send_slack_message( "醒醒吧,你只有一個人" )
+       elif data_text == '+3':
+            send_slack_message( "3333" )
 
         self.reply( '', 'text/html', 200 )
