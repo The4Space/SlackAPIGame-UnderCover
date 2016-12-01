@@ -45,7 +45,7 @@ class API_Worker( worker_base.API_Worker_Base ):
         print data
         print type(data)
 
-        data_text = data['text'][0][1:]
+        data_text = data['text'][0]
         player_name = data['user_name'][0]
         hey_rita_response = [
             ":hearts::hearts::hearts: Love you :hearts::hearts::hearts:",
