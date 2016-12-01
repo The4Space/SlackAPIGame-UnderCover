@@ -50,12 +50,3 @@ class API_Worker_Base():
 
     def do_DELETE( self ):
         self.reply( '', 'text/html', 405 )
-
-
-
-
-
-
-
-
-
