@@ -1,0 +1,2 @@
+mkdir -p /ubuntu/${APPLICATION_NAME}-${DEPLOYMENT_ID}
+ln -s /ubuntu/${APPLICATION_NAME}-${DEPLOYMENT_ID} /ubuntu/${APPLICATION_NAME}-tmp
