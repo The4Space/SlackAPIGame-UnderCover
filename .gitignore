@@ -1,6 +1,7 @@
 .DS_Store
 *.pyc
 *.yml
+!.travis.yml
 *.yaml
 *.config
 *.json
