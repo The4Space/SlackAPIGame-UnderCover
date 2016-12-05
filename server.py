@@ -31,7 +31,7 @@ class ServerHandler( BaseHTTPRequestHandler ):
         if self.path == '/stop_server':
 
             self.do_HEAD( 200, 'application/json' )
-            self.wfile.write( '{"status":"OK"}' )
+            self.wfile.write( '{"status":"OK"}\n' )
             self.wfile.close()
             httpd.server_close()
 
