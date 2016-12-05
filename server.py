@@ -27,27 +27,33 @@ class ServerHandler( BaseHTTPRequestHandler ):
         self.route_process( 'GET' )
 
     def do_POST(self):
-        ctype, pdict = cgi.parse_header( self.headers.getheader( 'content-type' ) )
 
-        post_data = None
-        form      = None
+        if self.path == '/stop_server':
 
-        print ctype
-        if ctype == 'text/plain':
-            post_data = self.rfile.read(int(self.headers.getheader('Content-Length')))
-        elif ctype == 'application/x-www-form-urlencoded':
-            length = int( self.headers.getheader( 'content-length' ) )
-            post_data = cgi.parse_qs( self.rfile.read( length ), keep_blank_values = 1 )
-        elif ctype == 'multipart/form-data':
-            form = cgi.FieldStorage(
-                fp=self.rfile,
-                headers=self.headers,
-                environ={ 'REQUEST_METHOD':'POST',
-                          'CONTENT_TYPE':self.headers['Content-Type']
-                }
-            )
+            self.do_HEAD( 200, 'application/json' )
+            self.wfile.write( '{"status":"OK"}' )
+            self.wfile.close()
+            httpd.server_close()
 
-        self.route_process( 'POST', post_data, form )
+        else:
+            ctype, pdict = cgi.parse_header( self.headers.getheader( 'content-type' ) )
+            post_data = None
+            form      = None
+            print ctype
+            if ctype == 'text/plain':
+                post_data = self.rfile.read(int(self.headers.getheader('Content-Length')))
+            elif ctype == 'application/x-www-form-urlencoded':
+                length = int( self.headers.getheader( 'content-length' ) )
+                post_data = cgi.parse_qs( self.rfile.read( length ), keep_blank_values = 1 )
+            elif ctype == 'multipart/form-data':
+                form = cgi.FieldStorage(
+                    fp=self.rfile,
+                    headers=self.headers,
+                    environ={ 'REQUEST_METHOD':'POST',
+                              'CONTENT_TYPE':self.headers['Content-Type']
+                    }
+                )
+            self.route_process( 'POST', post_data, form )
 
     def do_PUT(self):
         self.route_process( 'PUT' )
