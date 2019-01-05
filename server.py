@@ -1,8 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from BaseHTTPServer import BaseHTTPRequestHandler
-from BaseHTTPServer import HTTPServer
+from http.server  import BaseHTTPRequestHandler, HTTPServer
 import json
 import time
 import ssl
@@ -40,7 +39,7 @@ class ServerHandler( BaseHTTPRequestHandler ):
             ctype, pdict = cgi.parse_header( self.headers.getheader( 'content-type' ) )
             post_data = None
             form      = None
-            print ctype
+            print(ctype)
             if ctype == 'text/plain':
                 post_data = self.rfile.read(int(self.headers.getheader('Content-Length')))
             elif ctype == 'application/json':
@@ -83,7 +82,7 @@ if __name__ == '__main__':
     if key_path != '' and cert_path != '' :
         httpd.socket = ssl.wrap_socket (httpd.socket, keyfile=key_path ,certfile=cert_path, server_side=True)
 
-    print time.asctime(), "Server Starts - %s:%s" % (HOST_NAME, PORT_NUMBER)
+    print(time.asctime(), "Server Starts - %s:%s" % (HOST_NAME, PORT_NUMBER))
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
@@ -92,5 +91,4 @@ if __name__ == '__main__':
         pass
 
     httpd.server_close()
-    print time.asctime(), "Server Stops - %s:%s" % (HOST_NAME, PORT_NUMBER)
-    
+    print(time.asctime(), "Server Stops - %s:%s" % (HOST_NAME, PORT_NUMBER))

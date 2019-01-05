@@ -42,8 +42,8 @@ class API_Worker( worker_base.API_Worker_Base ):
 
     def do_POST( self ):
         data = self.post_data
-        print data
-        print type(data)
+        print(data)
+        print(type(data))
 
         data_text = data['text'][0]
         player_name = data['user_name'][0]

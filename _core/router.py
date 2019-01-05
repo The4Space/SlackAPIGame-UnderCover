@@ -9,8 +9,8 @@ def load_worker( path ):
     try:
         module = __import__( path, fromlist=[ from_list ] )
         module = imp.reload(module)
-    except ImportError, e:
-        print 'Exception', str(e)
+    except(ImportError, e):
+        print('Exception', str(e))
         return None
 
     if hasattr(module, 'API_Worker'):
